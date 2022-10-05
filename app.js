@@ -4,7 +4,11 @@ const app = express();
 
 require("dotenv").config();
 
-app.use([express.json])
+const user = require("./routes/user");
+
+app.use([express.json(), express.urlencoded({ extended: false })]) //middleware
+
+app.use([user]) //routes
 
 mongoose.connect(process.env.KEY, () => {
     console.log("MONGO CONNECTION MADE");
